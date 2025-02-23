@@ -3,10 +3,7 @@ package com.example.springassignment.todo.service;
 import com.example.springassignment.member.dto.MemberSaveResponseDto;
 import com.example.springassignment.member.entity.Member;
 import com.example.springassignment.member.repository.MemberRepository;
-import com.example.springassignment.todo.dto.TodoResponseDto;
-import com.example.springassignment.todo.dto.TodoSaveRequestDto;
-import com.example.springassignment.todo.dto.TodoUpdateRequestDto;
-import com.example.springassignment.todo.dto.TodoUpdateResponseDto;
+import com.example.springassignment.todo.dto.*;
 import com.example.springassignment.todo.entity.Todo;
 import com.example.springassignment.todo.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +21,7 @@ public class TodoService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public MemberSaveResponseDto save(Long memberId, TodoSaveRequestDto dto) {
+    public TodoSaveResponseDto save(Long memberId, TodoSaveRequestDto dto) {
 
         Member member = memberRepository.findById(memberId).orElseThrow(
                 () -> new RuntimeException("사용자를 찾을 수 없습니다.")
@@ -36,7 +33,7 @@ public class TodoService {
                 member
         );
         Todo savedTodo = todoRepository.save(todo);
-        return new MemberSaveResponseDto(
+        return new TodoSaveResponseDto(
                 savedTodo.getId(),
                 savedTodo.getTitle(),
                 savedTodo.getContent(),

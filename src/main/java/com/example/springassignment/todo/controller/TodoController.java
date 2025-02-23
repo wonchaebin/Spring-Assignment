@@ -4,10 +4,7 @@ import com.example.springassignment.common.consts.Const;
 import com.example.springassignment.member.dto.MemberSaveRequestDto;
 import com.example.springassignment.member.dto.MemberSaveResponseDto;
 import com.example.springassignment.member.service.MemberService;
-import com.example.springassignment.todo.dto.TodoResponseDto;
-import com.example.springassignment.todo.dto.TodoSaveRequestDto;
-import com.example.springassignment.todo.dto.TodoUpdateRequestDto;
-import com.example.springassignment.todo.dto.TodoUpdateResponseDto;
+import com.example.springassignment.todo.dto.*;
 import com.example.springassignment.todo.entity.Todo;
 import com.example.springassignment.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +21,7 @@ public class TodoController {
     private final MemberService memberService;
 
     @PostMapping("/todos")
-    public ResponseEntity<MemberSaveResponseDto> save(
+    public ResponseEntity<TodoSaveResponseDto> save(
             @SessionAttribute(name = Const.LOGIN_MEMBER) Long memberId,
             @RequestBody TodoSaveRequestDto dto
     ) {
